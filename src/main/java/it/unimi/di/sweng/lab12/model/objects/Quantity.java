@@ -13,6 +13,10 @@ public record Quantity(int qty) {
     }
 
     public static @NotNull Quantity fromString(@NotNull String qty) {
-        return null;
+        try {
+            return new Quantity(Integer.parseInt(qty));
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("Quantity must be a number");
+        }
     }
 }
