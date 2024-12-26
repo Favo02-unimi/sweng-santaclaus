@@ -45,7 +45,7 @@ public class DisplayView extends Region implements OutputView {
         return rows.length;
     }
 
-    private void reset() {
+    public void reset() {
         for (Label row : rows) {
             row.setText("");
         }
