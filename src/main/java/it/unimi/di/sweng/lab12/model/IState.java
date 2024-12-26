@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface IState {
 
-    public void addToy(@NotNull Toy toy, @NotNull Quantity qty, @NotNull City city);
+    boolean addToy(@NotNull Toy toy, @NotNull Quantity qty, @NotNull City city);
 
-    public @NotNull List<ToyInfo> getToys();
+    @NotNull List<ToyInfo> getToys();
 }
