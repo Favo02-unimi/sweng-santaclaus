@@ -1,5 +1,6 @@
 package it.unimi.di.sweng.lab12.model;
 
+import it.unimi.di.sweng.lab12.model.objects.City;
 import it.unimi.di.sweng.lab12.model.objects.Quantity;
 import it.unimi.di.sweng.lab12.model.objects.Toy;
 import org.junit.jupiter.api.Test;
@@ -85,5 +86,28 @@ public class ObjectsTest {
         assertThatException().isThrownBy(() -> Quantity.fromString(qty))
                 .isInstanceOf(IllegalArgumentException.class)
                 .withMessage(msg);
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "Milano",
+            "Roma",
+    })
+    public void validCityTest(String name) {
+        City SUT = new City(name);
+        assertThat(SUT.name()).isEqualTo(name);
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "''",
+            "' '",
+            "' \n '",
+            "' \t '",
+    })
+    public void invalidCityTest(String name) {
+        assertThatException().isThrownBy(() -> new City(name))
+                .isInstanceOf(IllegalArgumentException.class)
+                .withMessage("Name cannot be blank");
     }
 }
