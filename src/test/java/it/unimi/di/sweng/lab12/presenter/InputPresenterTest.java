@@ -7,6 +7,7 @@ import it.unimi.di.sweng.lab12.model.objects.City;
 import it.unimi.di.sweng.lab12.model.objects.Quantity;
 import it.unimi.di.sweng.lab12.model.objects.Toy;
 import it.unimi.di.sweng.lab12.model.objects.ToyInfo;
+import it.unimi.di.sweng.lab12.view.InputSanta;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -24,7 +25,7 @@ public class InputPresenterTest {
     @BeforeAll
     public static void setup() {
         model = mock(Model.class);
-        SUT = new CInputPresenter(model);
+        SUT = new CInputPresenter(model, mock(InputSanta.class));
     }
 
     @ParameterizedTest

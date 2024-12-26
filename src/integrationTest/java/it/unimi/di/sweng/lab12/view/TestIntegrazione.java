@@ -64,11 +64,11 @@ public class TestIntegrazione {
     assertThat(display[1].get(0)).isEqualTo("");
   }
 
-//  @Test
-//  public void testAddPeluche(FxRobot robot) {
-//    addToysForCity("Peluche:8", "Bresso", robot);
-//    assertThat(display[2].get(0)).startsWith("Bresso").endsWith("8");
-//  }
+  @Test
+  public void testAddPeluche(FxRobot robot) {
+    addToysForCity("Peluche:8", "Bresso", robot);
+    assertThat(display[2].get(0)).startsWith("Bresso").endsWith("8");
+  }
 
 //  @Test
 //  public void testAddPelucheToMilano(FxRobot robot) {

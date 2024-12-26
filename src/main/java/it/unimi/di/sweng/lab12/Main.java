@@ -1,5 +1,8 @@
 package it.unimi.di.sweng.lab12;
 
+import it.unimi.di.sweng.lab12.model.Model;
+import it.unimi.di.sweng.lab12.presenter.CInputPresenter;
+import it.unimi.di.sweng.lab12.presenter.InputPresenter;
 import it.unimi.di.sweng.lab12.view.DisplayView;
 import it.unimi.di.sweng.lab12.view.InputSanta;
 import javafx.application.Application;
@@ -46,6 +49,10 @@ public class Main extends Application {
 
 
     // TODO da completare creando modello e presenter e collegandoli opportunamente
+
+    Model model = new Model();
+
+    InputPresenter presenter = new CInputPresenter(model, input);
 
     //HINT: utile dopo aver definito model per inizializzare viste
     //model.notifyObservers();
