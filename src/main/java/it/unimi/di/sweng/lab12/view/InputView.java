@@ -10,4 +10,6 @@ public interface InputView {
     void showError(@NotNull String s);
 
     void showSuccess();
+
+    void clear();
 }

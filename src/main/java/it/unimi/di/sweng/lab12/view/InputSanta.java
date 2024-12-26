@@ -39,11 +39,15 @@ public class InputSanta extends Region implements InputView {
     }
 
     public void addHandlers(@NotNull InputPresenter presenter) {
-        addButton.setOnAction(eh -> presenter.action(toy.getText(), city.getText()));
+        addButton.setOnAction(eh -> {
+            presenter.action(toy.getText(), city.getText());
+            clear();
+        });
     }
 
     @Override
     public void showError(@NotNull String s) {
+        clear();
         error.setText(s);
         setBackground(new Background(new BackgroundFill(Color.YELLOW, new CornerRadii(5.0), Insets.EMPTY)));
     }
@@ -51,8 +55,13 @@ public class InputSanta extends Region implements InputView {
     @Override
     public void showSuccess() {
         error.setText("");
+        clear();
+        setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, new CornerRadii(5.0), Insets.EMPTY)));
+    }
+
+    @Override
+    public void clear() {
         toy.clear();
         city.clear();
-        setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY, new CornerRadii(5.0), Insets.EMPTY)));
     }
 }

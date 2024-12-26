@@ -70,48 +70,48 @@ public class TestIntegrazione {
     assertThat(display[2].get(0)).startsWith("Bresso").endsWith("8");
   }
 
-//  @Test
-//  public void testAddPelucheToMilano(FxRobot robot) {
-//    addToysForCity("Peluche:8", "Milano", robot);
-//    assertThat(display[0].get(0)).startsWith("Peluche").endsWith("8");
-//    assertThat(display[2].get(0)).startsWith("Milano").endsWith("8");
-//  }
+  @Test
+  public void testAddPelucheToMilano(FxRobot robot) {
+    addToysForCity("Peluche:8", "Milano", robot);
+    assertThat(display[0].get(0)).startsWith("Peluche").endsWith("8");
+    assertThat(display[2].get(0)).startsWith("Milano").endsWith("8");
+  }
 
-//  @Test
-//  public void testSortPresentationCity(FxRobot robot) {
-//    addToysForCity("PS5:7", "Milano", robot);
-//    addToysForCity("Trenino:18", "Milano", robot);
-//    addToysForCity("Peluche:8", "Milano", robot);
-//
-//    assertThat(display[0].get(0)).startsWith("Peluche").endsWith("8");
-//    assertThat(display[0].get(1)).startsWith("PS5").endsWith("7");
-//    assertThat(display[0].get(2)).startsWith("Trenino").endsWith("18");
-//  }
+  @Test
+  public void testSortPresentationCity(FxRobot robot) {
+    addToysForCity("PS5:7", "Milano", robot);
+    addToysForCity("Trenino:18", "Milano", robot);
+    addToysForCity("Peluche:8", "Milano", robot);
 
-//  @Test
-//  public void testSortPresentationToy(FxRobot robot) {
-//    addToysForCity("Peluche:7", "Milano", robot);
-//    addToysForCity("Peluche:18", "Bologna", robot);
-//    addToysForCity("Peluche:8", "Roma", robot);
-//    addToysForCity("Peluche:8", "Genova", robot);
-//
-//    assertThat(display[2].get(0)).startsWith("Bologna").endsWith("18");
-//    assertThat(display[2].get(1)).startsWith("Genova").endsWith("8");
-//    assertThat(display[2].get(2)).startsWith("Roma").endsWith("8");
-//
-//  }
+    assertThat(display[0].get(0)).startsWith("Peluche").endsWith("8");
+    assertThat(display[0].get(1)).startsWith("PS5").endsWith("7");
+    assertThat(display[0].get(2)).startsWith("Trenino").endsWith("18");
+  }
 
-//  @ParameterizedTest()
-//  @CsvSource(delimiter='|', textBlock = """
-//    Peluche:6    | ''       | City and toy must not be blank
-//    Peluche:otto | Milano   | The number of toys must be a positive integer
-//    Peluche 7    | Milano   | The input must be in the form toy:num
-//    """
-//  )
-//  public void testAddError(String t1, String t2, String expectedEror, FxRobot robot) {
-//    addToysForCity(t1, t2, robot);
-//    verifyThat(errorMessage, hasText(expectedEror));
-//  }
+  @Test
+  public void testSortPresentationToy(FxRobot robot) {
+    addToysForCity("Peluche:7", "Milano", robot);
+    addToysForCity("Peluche:18", "Bologna", robot);
+    addToysForCity("Peluche:8", "Roma", robot);
+    addToysForCity("Peluche:8", "Genova", robot);
+
+    assertThat(display[2].get(0)).startsWith("Bologna").endsWith("18");
+    assertThat(display[2].get(1)).startsWith("Genova").endsWith("8");
+    assertThat(display[2].get(2)).startsWith("Roma").endsWith("8");
+
+  }
+
+  @ParameterizedTest()
+  @CsvSource(delimiter='|', textBlock = """
+    Peluche:6    | ''       | City and toy must not be blank
+    Peluche:otto | Milano   | The number of toys must be a positive integer
+    Peluche 7    | Milano   | The input must be in the form toy:num
+    """
+  )
+  public void testAddError(String t1, String t2, String expectedEror, FxRobot robot) {
+    addToysForCity(t1, t2, robot);
+    verifyThat(errorMessage, hasText(expectedEror));
+  }
 
   // TEST UTILITY FUNCTIONS
   private void addToysForCity(String f1, String f2, @NotNull FxRobot robot) {

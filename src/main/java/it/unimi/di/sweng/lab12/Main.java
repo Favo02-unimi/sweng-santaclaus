@@ -1,8 +1,17 @@
 package it.unimi.di.sweng.lab12;
 
 import it.unimi.di.sweng.lab12.model.Model;
+import it.unimi.di.sweng.lab12.model.objects.City;
+import it.unimi.di.sweng.lab12.presenter.CDisplayPresenter;
 import it.unimi.di.sweng.lab12.presenter.CInputPresenter;
+import it.unimi.di.sweng.lab12.presenter.DisplayPresenter;
 import it.unimi.di.sweng.lab12.presenter.InputPresenter;
+import it.unimi.di.sweng.lab12.presenter.filterstrategy.FilterCity;
+import it.unimi.di.sweng.lab12.presenter.filterstrategy.FilterToy;
+import it.unimi.di.sweng.lab12.presenter.formatstrategy.CityQuantity;
+import it.unimi.di.sweng.lab12.presenter.formatstrategy.ToyQuantity;
+import it.unimi.di.sweng.lab12.presenter.sortstrategy.QuantityDec;
+import it.unimi.di.sweng.lab12.presenter.sortstrategy.ToyAlphabetical;
 import it.unimi.di.sweng.lab12.view.DisplayView;
 import it.unimi.di.sweng.lab12.view.InputSanta;
 import javafx.application.Application;
@@ -47,15 +56,15 @@ public class Main extends Application {
     gridPane.add(displayToy1, 3, 1);
     gridPane.add(displayToy2, 4, 1);
 
-
-    // TODO da completare creando modello e presenter e collegandoli opportunamente
-
     Model model = new Model();
 
-    InputPresenter presenter = new CInputPresenter(model, input);
+    InputPresenter inputPresenter = new CInputPresenter(model, input);
 
-    //HINT: utile dopo aver definito model per inizializzare viste
-    //model.notifyObservers();
+    DisplayPresenter milano = new CDisplayPresenter(model, displayCity1, new FilterCity("Milano"), ToyAlphabetical.S, ToyQuantity.S);
+    DisplayPresenter roma = new CDisplayPresenter(model, displayCity2, new FilterCity("Roma"), ToyAlphabetical.S, ToyQuantity.S);
+
+    DisplayPresenter peluche = new CDisplayPresenter(model, displayToy1, new FilterToy("Peluche"), QuantityDec.S, CityQuantity.S);
+    DisplayPresenter ps5 = new CDisplayPresenter(model, displayToy2, new FilterToy("PS5"), QuantityDec.S, CityQuantity.S);
 
     Scene scene = new Scene(gridPane);
     primaryStage.setScene(scene);
