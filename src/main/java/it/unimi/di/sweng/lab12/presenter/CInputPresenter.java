@@ -23,10 +23,38 @@ public class CInputPresenter implements InputPresenter {
     public void action(@NotNull String toyQty, @NotNull String cityStr) {
         String[] token = toyQty.split(":");
 
-        Toy toy = new Toy(token[0]);
-        Quantity qty = Quantity.fromString(token[1]);
-        City city = new City(cityStr);
+        if (token.length != 2) {
+            input.showError("The input must be in the form toy:num");
+            return;
+        }
 
-        model.addToy(toy, qty, city);
+        Toy toy;
+        Quantity qty;
+        City city;
+
+        try {
+            toy = new Toy(token[0]);
+        } catch (IllegalArgumentException e) {
+            input.showError("City and toy must not be blank");
+            return;
+        }
+
+        try {
+            city = new City(cityStr);
+        } catch (IllegalArgumentException e) {
+            input.showError("City and toy must not be blank");
+            return;
+        }
+
+        try {
+            qty = Quantity.fromString(token[1]);
+        } catch (IllegalArgumentException e) {
+            input.showError("The number of toys must be a positive integer");
+            return;
+        }
+
+        if (!model.addToy(toy, qty, city)) {
+            input.showError("Invalid insertion (toy already present or city full)");
+        }
     }
 }
