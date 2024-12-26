@@ -59,4 +59,31 @@ public class ObjectsTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .withMessage(msg);
     }
+
+    @ParameterizedTest
+    @CsvSource({
+            "5",
+            "2",
+            "100",
+    })
+    public void validStringQuantityTest(String qty) {
+        Quantity SUT = Quantity.fromString(qty);
+        assertThat(SUT.qty()).isEqualTo(Integer.parseInt(qty));
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "0,Quantity must be positive",
+            "ciao,Quantity must be a number",
+            "'',Quantity must be a number",
+            "9dasds,Quantity must be a number",
+            "101,Quantity must be less or equal than 100",
+            "-199,Quantity must be positive",
+            "-1,Quantity must be positive",
+    })
+    public void invalidStringQuantityTest(String qty, String msg) {
+        assertThatException().isThrownBy(() -> Quantity.fromString(qty))
+                .isInstanceOf(IllegalArgumentException.class)
+                .withMessage(msg);
+    }
 }
