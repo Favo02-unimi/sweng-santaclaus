@@ -5,7 +5,7 @@ import it.unimi.di.sweng.lab12.model.Model;
 import it.unimi.di.sweng.lab12.model.objects.ToyInfo;
 import it.unimi.di.sweng.lab12.presenter.filterstrategy.FilterStrategy;
 import it.unimi.di.sweng.lab12.presenter.formatstrategy.FormatStrategy;
-import it.unimi.di.sweng.lab12.presenter.sortstrategy.SortStrategy;
+import it.unimi.di.sweng.lab12.presenter.sortchain.SortChain;
 import it.unimi.di.sweng.lab12.view.OutputView;
 import org.jetbrains.annotations.NotNull;
 
@@ -17,11 +17,11 @@ public class CDisplayPresenter implements DisplayPresenter, Observer<List<ToyInf
 
     private final @NotNull OutputView view;
     private final @NotNull FilterStrategy filterStrategy;
-    private final @NotNull SortStrategy sortStrategy;
+    private final @NotNull SortChain sortStrategy;
     private final @NotNull FormatStrategy formatStrategy;
 
     public CDisplayPresenter(@NotNull Model model, @NotNull OutputView view,
-                             @NotNull FilterStrategy filterStrategy, @NotNull SortStrategy sortStrategy, @NotNull FormatStrategy formatStrategy) {
+                             @NotNull FilterStrategy filterStrategy, @NotNull SortChain sortStrategy, @NotNull FormatStrategy formatStrategy) {
         this.view = view;
         this.filterStrategy = filterStrategy;
         this.sortStrategy = sortStrategy;

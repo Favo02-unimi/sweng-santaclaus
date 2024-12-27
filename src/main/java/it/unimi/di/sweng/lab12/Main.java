@@ -1,7 +1,6 @@
 package it.unimi.di.sweng.lab12;
 
 import it.unimi.di.sweng.lab12.model.Model;
-import it.unimi.di.sweng.lab12.model.objects.City;
 import it.unimi.di.sweng.lab12.presenter.CDisplayPresenter;
 import it.unimi.di.sweng.lab12.presenter.CInputPresenter;
 import it.unimi.di.sweng.lab12.presenter.DisplayPresenter;
@@ -10,8 +9,10 @@ import it.unimi.di.sweng.lab12.presenter.filterstrategy.FilterCity;
 import it.unimi.di.sweng.lab12.presenter.filterstrategy.FilterToy;
 import it.unimi.di.sweng.lab12.presenter.formatstrategy.CityQuantity;
 import it.unimi.di.sweng.lab12.presenter.formatstrategy.ToyQuantity;
-import it.unimi.di.sweng.lab12.presenter.sortstrategy.QuantityDec;
-import it.unimi.di.sweng.lab12.presenter.sortstrategy.ToyAlphabetical;
+import it.unimi.di.sweng.lab12.presenter.sortchain.AlphabeticCityChain;
+import it.unimi.di.sweng.lab12.presenter.sortchain.AlphabeticToyChain;
+import it.unimi.di.sweng.lab12.presenter.sortchain.QuantityDecChain;
+import it.unimi.di.sweng.lab12.presenter.sortchain.SortChain;
 import it.unimi.di.sweng.lab12.view.DisplayView;
 import it.unimi.di.sweng.lab12.view.InputSanta;
 import javafx.application.Application;
@@ -60,11 +61,14 @@ public class Main extends Application {
 
     InputPresenter inputPresenter = new CInputPresenter(model, input);
 
-    DisplayPresenter milano = new CDisplayPresenter(model, displayCity1, new FilterCity("Milano"), ToyAlphabetical.S, ToyQuantity.S);
-    DisplayPresenter roma = new CDisplayPresenter(model, displayCity2, new FilterCity("Roma"), ToyAlphabetical.S, ToyQuantity.S);
+    SortChain citySort = new AlphabeticToyChain(SortChain.STABLE);
+    SortChain toySort = new QuantityDecChain(new AlphabeticCityChain(SortChain.STABLE));
 
-    DisplayPresenter peluche = new CDisplayPresenter(model, displayToy1, new FilterToy("Peluche"), QuantityDec.S, CityQuantity.S);
-    DisplayPresenter ps5 = new CDisplayPresenter(model, displayToy2, new FilterToy("PS5"), QuantityDec.S, CityQuantity.S);
+    DisplayPresenter milano = new CDisplayPresenter(model, displayCity1, new FilterCity("Milano"), citySort, ToyQuantity.S);
+    DisplayPresenter roma = new CDisplayPresenter(model, displayCity2, new FilterCity("Roma"), citySort, ToyQuantity.S);
+
+    DisplayPresenter peluche = new CDisplayPresenter(model, displayToy1, new FilterToy("Peluche"), toySort, CityQuantity.S);
+    DisplayPresenter ps5 = new CDisplayPresenter(model, displayToy2, new FilterToy("PS5"), toySort, CityQuantity.S);
 
     Scene scene = new Scene(gridPane);
     primaryStage.setScene(scene);
