@@ -5,7 +5,7 @@ import org.jetbrains.annotations.NotNull;
 public record Quantity(int qty) {
     public Quantity {
         if (qty <= 0) {
-            throw new IllegalArgumentException("Quantity must be positive");
+            throw new IllegalArgumentException("The number of toys must be a positive integer");
         }
         if (qty > 100) {
             throw new IllegalArgumentException("Quantity must be less or equal than 100");
@@ -16,7 +16,7 @@ public record Quantity(int qty) {
         try {
             return new Quantity(Integer.parseInt(qty));
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("Quantity must be a number");
+            throw new IllegalArgumentException("The number of toys must be a positive integer");
         }
     }
 }

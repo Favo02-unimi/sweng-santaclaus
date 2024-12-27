@@ -128,7 +128,7 @@ public class TestIntegrazione {
     verifyThat(errorMessage, hasText(""));
 
     addToysForCity("Puffetta:1", "Milano", robot);
-    verifyThat(errorMessage, hasText("Invalid insertion (toy already present or city full)"));
+    verifyThat(errorMessage, hasText("The quantity of toys in this city is over 100"));
   }
 
   // TEST UTILITY FUNCTIONS

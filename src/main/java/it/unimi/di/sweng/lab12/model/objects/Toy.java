@@ -5,7 +5,7 @@ import org.jetbrains.annotations.NotNull;
 public record Toy(@NotNull String name) {
     public Toy {
         if (name.isBlank()) {
-            throw new IllegalArgumentException("Name cannot be blank");
+            throw new IllegalArgumentException("City and toy must not be blank");
         }
     }
 }

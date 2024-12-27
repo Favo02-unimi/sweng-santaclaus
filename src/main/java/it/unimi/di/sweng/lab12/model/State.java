@@ -19,19 +19,18 @@ public class State implements IState {
     }
 
     @Override
-    public boolean addToy(@NotNull Toy toy, @NotNull Quantity qty, @NotNull City city) {
+    public void addToy(@NotNull Toy toy, @NotNull Quantity qty, @NotNull City city) {
         var ToyCity = new ToyCity(toy, city);
         if (toys.containsKey(ToyCity)) {
-            return false;
+            throw new IllegalArgumentException("The toy has already been added to the city");
         }
         if (cityQuantity.containsKey(city) && cityQuantity.get(city).qty() + qty.qty() > 100) {
-            return false;
+            throw new IllegalArgumentException("The quantity of toys in this city is over 100");
         }
 
         toys.put(new ToyCity(toy, city), qty);
         if (!cityQuantity.containsKey(city)) cityQuantity.put(city, qty);
         else cityQuantity.put(city, new Quantity(cityQuantity.get(city).qty() + qty.qty()));
-        return true;
     }
 
     @Override

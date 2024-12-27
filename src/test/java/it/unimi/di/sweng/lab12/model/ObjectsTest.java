@@ -34,7 +34,7 @@ public class ObjectsTest {
     public void invalidToyTest(String name) {
         assertThatException().isThrownBy(() -> new Toy(name))
             .isInstanceOf(IllegalArgumentException.class)
-            .withMessage("Name cannot be blank");
+            .withMessage("City and toy must not be blank");
     }
 
     @ParameterizedTest
@@ -50,10 +50,10 @@ public class ObjectsTest {
 
     @ParameterizedTest
     @CsvSource({
-            "0,Quantity must be positive",
+            "0,The number of toys must be a positive integer",
             "101,Quantity must be less or equal than 100",
-            "-199,Quantity must be positive",
-            "-1,Quantity must be positive",
+            "-199,The number of toys must be a positive integer",
+            "-1,The number of toys must be a positive integer",
     })
     public void invalidIntQuantityTest(int qty, String msg) {
         assertThatException().isThrownBy(() -> new Quantity(qty))
@@ -74,13 +74,13 @@ public class ObjectsTest {
 
     @ParameterizedTest
     @CsvSource({
-            "0,Quantity must be positive",
-            "ciao,Quantity must be a number",
-            "'',Quantity must be a number",
-            "9dasds,Quantity must be a number",
+            "0,The number of toys must be a positive integer",
+            "ciao,The number of toys must be a positive integer",
+            "'',The number of toys must be a positive integer",
+            "9dasds,The number of toys must be a positive integer",
             "101,Quantity must be less or equal than 100",
-            "-199,Quantity must be positive",
-            "-1,Quantity must be positive",
+            "-199,The number of toys must be a positive integer",
+            "-1,The number of toys must be a positive integer",
     })
     public void invalidStringQuantityTest(String qty, String msg) {
         assertThatException().isThrownBy(() -> Quantity.fromString(qty))
@@ -108,6 +108,6 @@ public class ObjectsTest {
     public void invalidCityTest(String name) {
         assertThatException().isThrownBy(() -> new City(name))
                 .isInstanceOf(IllegalArgumentException.class)
-                .withMessage("Name cannot be blank");
+                .withMessage("City and toy must not be blank");
     }
 }

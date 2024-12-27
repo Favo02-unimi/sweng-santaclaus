@@ -50,19 +50,19 @@ public class InputPresenterTest {
             "Puffo:4,'  ',City and toy must not be blank",
             "Puffo:-2,Milano,The number of toys must be a positive integer",
             "Puffo:0,Milano,The number of toys must be a positive integer",
-            "Puffo:101,Milano,The number of toys must be a positive integer",
+            "Puffo:101,Milano,Quantity must be less or equal than 100",
             "Puffo:ciao,Milano,The number of toys must be a positive integer",
     })
     public void testNotifyErrors(String toyQty, String city, String error) {
         SUT.action(toyQty, city);
-        verify(view, times(1)).showError(error);
+        verify(view, times(1)).showError(eq(error));
     }
 
     @Test
     public void testNotifyCityFull() {
         SUT.action("Puffo:100", "Milano");
         SUT.action("Maiale:1", "Milano");
-        verify(view, times(1)).showError("Invalid insertion (toy already present or city full)");
+        verify(view, times(1)).showError("The quantity of toys in this city is over 100");
     }
 
 }

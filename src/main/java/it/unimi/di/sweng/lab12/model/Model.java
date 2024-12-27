@@ -37,9 +37,8 @@ public class Model extends State implements Observable<List<ToyInfo>> {
     }
 
     @Override
-    public boolean addToy(@NotNull Toy toy, @NotNull Quantity qty, @NotNull City city) {
-        boolean result = super.addToy(toy, qty, city);
+    public void addToy(@NotNull Toy toy, @NotNull Quantity qty, @NotNull City city) {
+        super.addToy(toy, qty, city);
         notifyObservers();
-        return result;
     }
 }
