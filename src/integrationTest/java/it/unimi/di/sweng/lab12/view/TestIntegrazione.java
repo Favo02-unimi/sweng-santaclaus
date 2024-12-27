@@ -113,6 +113,24 @@ public class TestIntegrazione {
     verifyThat(errorMessage, hasText(expectedEror));
   }
 
+  @Test
+  public void testTooManyToys(FxRobot robot) {
+    addToysForCity("Peluche:7", "Milano", robot);
+    verifyThat(errorMessage, hasText(""));
+
+    addToysForCity("Puffo:90", "Milano", robot);
+    verifyThat(errorMessage, hasText(""));
+
+    addToysForCity("PS5:3", "Milano", robot);
+    verifyThat(errorMessage, hasText(""));
+
+    addToysForCity("PS5:100", "Roma", robot);
+    verifyThat(errorMessage, hasText(""));
+
+    addToysForCity("Puffetta:1", "Milano", robot);
+    verifyThat(errorMessage, hasText("Invalid insertion (toy already present or city full)"));
+  }
+
   // TEST UTILITY FUNCTIONS
   private void addToysForCity(String f1, String f2, @NotNull FxRobot robot) {
     robot.doubleClickOn(input.toy);
