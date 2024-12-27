@@ -8,4 +8,6 @@ public interface OutputView {
     @NotNull String get(int i);
 
     int size();
+
+    void reset();
 }

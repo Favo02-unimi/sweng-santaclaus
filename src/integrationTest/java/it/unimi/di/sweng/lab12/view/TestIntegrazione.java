@@ -87,6 +87,7 @@ public class TestIntegrazione {
     assertThat(display[0].get(1)).startsWith("PS5").endsWith("7");
     assertThat(display[0].get(2)).startsWith("Trenino").endsWith("18");
   }
+
   @Test
   public void testSortPresentationToy(FxRobot robot) {
     addToysForCity("Peluche:7", "Milano", robot);
@@ -110,6 +111,24 @@ public class TestIntegrazione {
   public void testAddError(String t1, String t2, String expectedEror, FxRobot robot) {
     addToysForCity(t1, t2, robot);
     verifyThat(errorMessage, hasText(expectedEror));
+  }
+
+  @Test
+  public void testTooManyToys(FxRobot robot) {
+    addToysForCity("Peluche:7", "Milano", robot);
+    verifyThat(errorMessage, hasText(""));
+
+    addToysForCity("Puffo:90", "Milano", robot);
+    verifyThat(errorMessage, hasText(""));
+
+    addToysForCity("PS5:3", "Milano", robot);
+    verifyThat(errorMessage, hasText(""));
+
+    addToysForCity("PS5:100", "Roma", robot);
+    verifyThat(errorMessage, hasText(""));
+
+    addToysForCity("Puffetta:1", "Milano", robot);
+    verifyThat(errorMessage, hasText("Invalid insertion (toy already present or city full)"));
   }
 
   // TEST UTILITY FUNCTIONS

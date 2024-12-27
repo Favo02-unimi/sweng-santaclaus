@@ -28,6 +28,8 @@ public class DisplayView extends Region implements OutputView {
             grid.add(this.rows[i], 0, i + 1);
         }
         this.getChildren().add(grid);
+
+        reset();
     }
 
     public void set(int i, @NotNull String s) {
@@ -41,5 +43,11 @@ public class DisplayView extends Region implements OutputView {
     @Override
     public int size() {
         return rows.length;
+    }
+
+    public void reset() {
+        for (Label row : rows) {
+            row.setText("");
+        }
     }
 }
